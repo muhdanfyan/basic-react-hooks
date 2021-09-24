@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import ProductList from "./components/ProductList";
 
@@ -29,6 +29,12 @@ function App() {
   //   setAge(40)
   // }
 
+  const [name, setName] = useState('dadan')
+
+  useEffect(() => {
+    console.log('useEffect Running..') 
+  }, [name])
+  
   return (
     <div>
       <Header />
@@ -40,7 +46,8 @@ function App() {
       {/* <button onClick={ () => changeTitle('fikri') }>Click Me</button> */}
       {/* <button onClick={ () => changeTitle('Bisa berubah tawwa') }>Click Me</button> */}
 
-      
+      <button onClick={() => setName('Jokes')}>Change Name</button>
+      <p>{name}</p>
     </div>
   );
 }

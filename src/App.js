@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Header from "./components/Header";
+import ProductList from "./components/ProductList";
 
 function App() {
   // cara gunakan useState
-  const [title, setTitle] = useState("Welcome to My App")
-  const [age, setAge] = useState(20)
+  // const [title, setTitle] = useState("Welcome to My App")
+  // const [age, setAge] = useState(20)
   // const link = "https://mfikri.com"
 
   const [products, setProduct] = useState([
@@ -15,6 +16,10 @@ function App() {
     {id:5, title: 'Product 5', price : 649}
   ])
 
+  const deleteProduct = (productId) => {
+    const newProducts = products.filter(product => product.id !== productId)
+    setProduct(newProducts)
+  }
   // const clickMe = (name) =>{
   //   console.log('Clicked '+ name)
   // }
@@ -27,6 +32,7 @@ function App() {
   return (
     <div>
       <Header />
+      <ProductList products={products} deleteProduct={deleteProduct} />
       {/* materi 1 */}
       {/* <h1>{title}</h1> */}
       {/* <h1>{ age}</h1> */}
@@ -34,12 +40,7 @@ function App() {
       {/* <button onClick={ () => changeTitle('fikri') }>Click Me</button> */}
       {/* <button onClick={ () => changeTitle('Bisa berubah tawwa') }>Click Me</button> */}
 
-      <ul>
-        {products.map((product)=> (
-          <li key={ product.id }>{ product.title } - { product.price }</li>
-        ))}
-      </ul>
-
+      
     </div>
   );
 }

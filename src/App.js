@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import Header from "./components/Header";
 import ProductList from "./components/ProductList";
+import About from "./components/About";
+import Contact from "./components/Contact";
 
 function App() {
   // cara gunakan useState
@@ -20,14 +23,6 @@ function App() {
     const newProducts = products.filter(product => product.id !== productId)
     setProduct(newProducts)
   }
-  // const clickMe = (name) =>{
-  //   console.log('Clicked '+ name)
-  // }
-
-  // const changeTitle = (name) =>{
-  //   setTitle(name)
-  //   setAge(40)
-  // }
 
   const [name, setName] = useState('dadan')
 
@@ -37,17 +32,19 @@ function App() {
   
   return (
     <div>
-      <Header />
-      <ProductList products={products} deleteProduct={deleteProduct} />
-      {/* materi 1 */}
-      {/* <h1>{title}</h1> */}
-      {/* <h1>{ age}</h1> */}
-      {/* <a href={link}>Go To My Webiste</a> */}
-      {/* <button onClick={ () => changeTitle('fikri') }>Click Me</button> */}
-      {/* <button onClick={ () => changeTitle('Bisa berubah tawwa') }>Click Me</button> */}
-
-      <button onClick={() => setName('Jokes')}>Change Name</button>
-      <p>{name}</p>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <ProductList products={products} deleteProduct={deleteProduct} />
+          </Route>
+          <Route path="/about">
+              <About />
+          </Route>
+          <Route path="/contact">
+            <Contact />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
